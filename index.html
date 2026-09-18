@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signature Craft — Handmade. Timeless. You.</title>
+  <meta name="description" content="Signature Craft — handmade jewelry and artisanal pieces crafted from high-quality wood board. Handcrafted with elegance and authenticity." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Signature Craft — Handmade. Timeless. You." />
+  <meta property="og:description" content="Handmade jewelry and artisanal pieces crafted from high-quality wood board." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#home" class="brand" aria-label="Signature Craft home">
+        <img src="assets/logo-mark.svg" alt="" class="brand__mark" />
+        <span class="brand__text">
+          <span class="brand__name">Signature</span>
+          <span class="brand__sub">C&nbsp;R&nbsp;A&nbsp;F&nbsp;T</span>
+        </span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#story" class="nav__link">Story</a>
+        <a href="#gallery" class="nav__link">Gallery</a>
+        <a href="#custom" class="nav__link">Custom Orders</a>
+        <a href="#contact" class="nav__link">Contact</a>
+        <a href="#contact" class="btn btn--sm nav__cta">Order Now</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero__mark" aria-hidden="true">
+        <img src="assets/logo-mark.svg" alt="" />
+      </div>
+      <div class="container hero__inner">
+        <p class="eyebrow reveal">Handmade wooden artistry</p>
+        <h1 class="hero__title reveal">
+          <span class="hero__title-script">Signature</span>
+          <span class="hero__title-sub">C&nbsp;R&nbsp;A&nbsp;F&nbsp;T</span>
+        </h1>
+        <p class="hero__tagline reveal">Handmade. Timeless. You.</p>
+        <p class="hero__lead reveal">
+          Unique jewelry and artisanal pieces crafted from high-quality wood board —
+          where traditional craftsmanship meets modern elegance, and every piece
+          carries a signature touch.
+        </p>
+        <div class="hero__actions reveal">
+          <a href="#gallery" class="btn btn--solid">Explore the Collection</a>
+          <a href="#custom" class="btn btn--ghost">Commission a Piece</a>
+        </div>
+      </div>
+      <a href="#story" class="hero__scroll" aria-label="Scroll to story">
+        <span class="hero__scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- ============ STORY ============ -->
+    <section class="story section" id="story">
+      <div class="container story__grid">
+        <div class="story__visual reveal">
+          <div class="story__frame" data-tone="chestnut">
+            <img src="assets/logo-mark.svg" alt="" class="story__watermark" />
+            <span class="ph-label">Studio / maker photo</span>
+          </div>
+          <div class="story__badge">
+            <span class="story__badge-num">100%</span>
+            <span class="story__badge-txt">Handcrafted</span>
+          </div>
+        </div>
+
+        <div class="story__body">
+          <p class="eyebrow reveal">Our Story</p>
+          <h2 class="section__title reveal">A unique touch in<br />handmade artistry</h2>
+          <p class="reveal">
+            Signature Craft is a handmade design brand specializing in unique jewelry
+            and artisanal pieces crafted from high-quality wood board. Combining
+            traditional craftsmanship with modern aesthetics, we focus on
+            individuality, authenticity, and artistic expression.
+          </p>
+          <p class="reveal">
+            Each piece carries a signature touch — reflecting exclusivity and
+            creativity. More than just a brand, Signature Craft represents quality,
+            self-expression, and personal storytelling through handmade artistry.
+          </p>
+
+          <ul class="values reveal">
+            <li class="value">
+              <span class="value__title">Authenticity</span>
+              <span class="value__txt">Genuine materials, honest craft.</span>
+            </li>
+            <li class="value">
+              <span class="value__title">Individuality</span>
+              <span class="value__txt">No two pieces are ever alike.</span>
+            </li>
+            <li class="value">
+              <span class="value__title">Elegance</span>
+              <span class="value__txt">Timeless design, refined finish.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">The Collection</p>
+          <h2 class="section__title">Crafted to be worn, kept &amp; treasured</h2>
+          <p class="section__intro">
+            A curated selection of handmade wooden pieces. Filter by category —
+            tap any piece to see the details.
+          </p>
+        </div>
+
+        <div class="filters reveal" id="filters" role="tablist" aria-label="Filter products"></div>
+
+        <div class="grid" id="grid"></div>
+
+        <p class="gallery__note reveal">
+          New pieces added regularly. Looking for something specific?
+          <a href="#custom">Request a custom commission →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ CUSTOM ORDERS ============ -->
+    <section class="custom section" id="custom">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Bespoke Commissions</p>
+          <h2 class="section__title">Your story, handcrafted</h2>
+          <p class="section__intro">
+            From personalized name pieces to one-of-a-kind gifts, we bring your idea
+            to life in wood. Here's how a custom order comes together.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">01</span>
+            <h3 class="step__title">Share your idea</h3>
+            <p class="step__txt">Tell us what you envision — a name, a shape, an occasion. Reference photos welcome.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">02</span>
+            <h3 class="step__title">Design &amp; quote</h3>
+            <p class="step__txt">We sketch a concept, choose the wood, and confirm the price and timeline with you.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">03</span>
+            <h3 class="step__title">Handcrafting</h3>
+            <p class="step__txt">Your piece is cut, shaped, and finished by hand with meticulous care and detail.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">04</span>
+            <h3 class="step__title">Delivery</h3>
+            <p class="step__txt">Wrapped in signature packaging and ready to gift, keep, or wear with pride.</p>
+          </li>
+        </ol>
+
+        <div class="custom__cta reveal">
+          <p>Typical turnaround is <strong>5&ndash;14 days</strong> depending on complexity.</p>
+          <a href="#contact" class="btn btn--solid">Start your commission</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact section" id="contact">
+      <div class="container contact__grid">
+        <div class="contact__info reveal">
+          <p class="eyebrow">Get in touch</p>
+          <h2 class="section__title">Let's make<br />something yours</h2>
+          <p>
+            Have a question, a custom idea, or want to place an order? Send a message
+            and we'll get back to you — or reach us directly on your favourite channel.
+          </p>
+
+          <ul class="contact__list">
+            <li>
+              <span class="contact__label">Phone / WhatsApp</span>
+              <a href="tel:+251939954213">+251 939 954 213</a>
+              <a href="tel:+251941246822">+251 941 246 822</a>
+            </li>
+            <li>
+              <span class="contact__label">Instagram</span>
+              <a href="https://instagram.com/signa_ture277" target="_blank" rel="noopener">@signa_ture277</a>
+            </li>
+            <li>
+              <span class="contact__label">TikTok</span>
+              <a href="https://tiktok.com/@signature.craft" target="_blank" rel="noopener">@signature.craft</a>
+            </li>
+            <li>
+              <span class="contact__label">Telegram</span>
+              <a href="https://t.me/Signaturecraft" target="_blank" rel="noopener">@Signaturecraft</a>
+            </li>
+          </ul>
+        </div>
+
+        <form class="contact__form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" required />
+          </div>
+          <div class="field">
+            <label for="interest">I'm interested in</label>
+            <select id="interest" name="interest">
+              <option value="A ready-made piece">A ready-made piece</option>
+              <option value="A custom commission">A custom commission</option>
+              <option value="Wholesale / bulk">Wholesale / bulk</option>
+              <option value="Just saying hello">Just saying hello</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--solid btn--block">Send message</button>
+          <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#home" class="brand brand--footer">
+        <img src="assets/logo-mark.svg" alt="" class="brand__mark" />
+        <span class="brand__text">
+          <span class="brand__name">Signature</span>
+          <span class="brand__sub">C&nbsp;R&nbsp;A&nbsp;F&nbsp;T</span>
+        </span>
+      </a>
+      <p class="footer__tag">Handcrafted with elegance and authenticity.</p>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#story">Story</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#custom">Custom Orders</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer__social">
+        <a href="https://instagram.com/signa_ture277" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tiktok.com/@signature.craft" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://t.me/Signaturecraft" target="_blank" rel="noopener">Telegram</a>
+      </div>
+      <p class="footer__copy">&copy; <span id="year"></span> Signature Craft. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Product details">
+    <div class="lightbox__backdrop" data-close></div>
+    <div class="lightbox__panel">
+      <button class="lightbox__close" data-close aria-label="Close">&times;</button>
+      <div class="lightbox__media" id="lbMedia"></div>
+      <div class="lightbox__body">
+        <p class="lightbox__cat" id="lbCat"></p>
+        <h3 class="lightbox__title" id="lbTitle"></h3>
+        <p class="lightbox__material" id="lbMaterial"></p>
+        <p class="lightbox__desc" id="lbDesc"></p>
+        <p class="lightbox__price" id="lbPrice"></p>
+        <a href="#contact" class="btn btn--solid" data-close id="lbCta">Inquire about this piece</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

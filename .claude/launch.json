@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": [
+        "-ExecutionPolicy", "Bypass",
+        "-File", "C:\\Users\\signa\\AppData\\Local\\Temp\\claude\\C--Users-signa-Documents-Projects\\703139e1-7d9f-4ced-8b29-cfa34edc1c04\\scratchpad\\serve.ps1",
+        "-Port", "5173",
+        "-Root", "C:\\Users\\signa\\Documents\\Projects"
+      ],
+      "port": 5173
+    }
+  ]
+}

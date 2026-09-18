@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Signature Craft mark">
+  <defs>
+    <linearGradient id="scGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A9764A"/>
+      <stop offset="0.55" stop-color="#8B5E3C"/>
+      <stop offset="1" stop-color="#6F4A2E"/>
+    </linearGradient>
+  </defs>
+  <!-- Stylised infinity / signature "S" ribbon, rotated to a tall diagonal -->
+  <g transform="rotate(-58 100 100)">
+    <path fill="none" stroke="url(#scGold)" stroke-width="14" stroke-linecap="round"
+      d="M100,100
+         C100,55 45,55 45,100
+         C45,145 100,145 100,100
+         C100,55 155,55 155,100
+         C155,145 100,145 100,100 Z"/>
+  </g>
+</svg>

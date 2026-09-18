@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import fitz; print\\('pymupdf ok'\\)\")",
+      "Bash(python3 -c \"import fitz; print\\('pymupdf ok'\\)\")",
+      "Bash(python -c \"import sys; print\\(sys.executable\\)\")",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "Bash(npx --version)",
+      "Bash(npm --version)",
+      "PowerShell($cmds = 'node','npm','python','py','dotnet'; foreach\\($c in $cmds\\){ $p = \\(Get-Command $c -ErrorAction SilentlyContinue\\).Source; if\\($p\\){ \"$c -> $p\" } else { \"$c -> NOT FOUND\" } })"
+    ]
+  }
+}
