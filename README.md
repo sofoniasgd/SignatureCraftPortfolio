@@ -27,8 +27,22 @@ All products **and all contact details** come from one file:
 
 ## View it
 
-**Recommended:** right-click `serve.ps1` → **Run with PowerShell**. It opens
-`http://localhost:5173/` automatically. Press `Ctrl+C` to stop.
+Start a preview server, then open <http://localhost:5173/> in your browser.
+Press `Ctrl+C` to stop it.
+
+- **WSL (Ubuntu):** in a WSL terminal, from the project folder:
+  ```bash
+  cd /mnt/c/Users/metasebia/Documents/projects/SignatureCraftPortfolio
+  bash serve.sh
+  ```
+  Or straight from PowerShell / the VS Code terminal:
+  ```powershell
+  wsl -d Ubuntu-20.04 --cd /mnt/c/Users/metasebia/Documents/projects/SignatureCraftPortfolio -- bash serve.sh
+  ```
+- **Windows only (no WSL):** right-click `serve.ps1` → **Run with PowerShell**.
+  It opens the browser automatically.
+
+Edits to `data/products.json`, CSS, or JS show up on a normal browser refresh.
 
 > Double-clicking `index.html` directly won't show the gallery — browsers
 > block a plain file from loading `data/products.json` for security reasons.
@@ -45,9 +59,13 @@ css/styles.css        All styling — brand colours & type live at the top
 js/main.js            Interactions (loads the data file, gallery, popup, form)
 data/products.json    ← YOUR CONTENT: contact details, categories, products
 assets/
-  logo-mark.svg       The infinity "S" mark, recreated as scalable vector
+  SGLOGO.svg          The logo mark (nav, hero, footer, browser tab)
+  logo-mark.svg       Mark used on placeholder product tiles
+  brillant/           "Signature" wordmark font (kept out of git, included by package.sh)
   products/           ← Drop your product photos here
-serve.ps1             Local preview server (no installs needed)
+serve.sh              Local preview server for WSL (needs python3)
+serve.ps1             Local preview server for plain Windows (no installs needed)
+package.sh            Builds the upload bundle for your web host
 ```
 
 After editing `data/products.json` (or adding photos), upload just those files to
@@ -62,6 +80,7 @@ The file has three parts:
 ```json
 {
   "contact":    { ... },   your email, phones, and social handles
+  "links":      { ... },   where the order buttons go
   "categories": [ ... ],   the filter buttons above the gallery
   "products":   [ ... ]    one block per piece
 }
@@ -90,6 +109,28 @@ The file has three parts:
   The links are built automatically. To hide one, set it to `""`.
 
 These appear in both the Contact section and the footer.
+
+### Order links
+```json
+"links": {
+  "order": "#contact",
+  "commission": "#contact",
+  "product": "#contact"
+}
+```
+| Key          | Button |
+|--------------|--------|
+| `order`      | **Order Now** in the top navigation (and mobile menu) |
+| `commission` | **Start your commission** in the Custom Orders section |
+| `product`    | **Inquire about this piece** in every product popup |
+
+`"#contact"` scrolls to the contact form (how they work today). When your online
+shop is live, replace them with full web addresses, e.g.
+`"order": "https://shop.signaturecraft.com/"` — just re-upload
+`data/products.json`, nothing else.
+
+A single product can also send its popup button somewhere specific (e.g. its
+own shop page) by adding a `"link"` to that product — see the table below.
 
 ### 2. Categories
 ```json
@@ -123,6 +164,7 @@ the fields. Remember the comma between blocks.
 | `price`    | Any text: `"Br 750"`, `"From Br 1,200"`, `"Inquire"`, or `""` to hide. |
 | `tone`     | Placeholder colour when there's no photo: `"chestnut"`, `"sand"`, `"deep"`, or `"ink"`. |
 | `images`   | List of photo paths (see below). `[]` shows a branded placeholder. |
+| `link`     | *Optional.* Where this product's "Inquire about this piece" button goes. Leave it out to use `links.product`. |
 
 Products appear in the gallery in the same order as in the file. To remove a
 product, delete its whole `{ ... }` block (and fix the comma).
@@ -150,6 +192,15 @@ product instead of creating separate products. The first photo is the card cover
 ```
 The card gets a small "3 photos" badge and the popup becomes a slideshow.
 
+**Phone photos (`.heic`) won't display** in Chrome, Edge, or Firefox — convert
+them to `.jpg` first (most phones can export as JPG, or use any free online
+converter). Full-size camera photos (3–8 MB) also make the site slow; shrink them
+to ~1200 px before adding.
+
+`assets/products/originals/` holds the untouched full-size photos the current
+web versions were made from. The site doesn't use that folder, so you can leave
+it out when uploading.
+
 ---
 
 ## Contact form
@@ -169,22 +220,49 @@ Netlify Forms; either needs a small change in `js/main.js`.
 | Dark Gray    | `#2D2D2D` | body text, contact section      |
 | Warm Cream   | `#F1EAE3` | page background                 |
 
-Fonts: **Cormorant Garamond** (headings / logotype) + **Jost** (body / labels),
-loaded from Google Fonts.
+Fonts: **Brillant** by suhadidesign (the "Signature" wordmark, from
+`assets/brillant/`), **Cormorant Garamond** (headings) + **Jost** (body / labels)
+from Google Fonts.
 
 ## Still to do
 
-- Replace `contact.email` with the real inbox.
-- Add real product photos (all products currently use placeholders).
+- Add prices — every product currently has `"price": ""` (hidden).
+- Check product names/descriptions (written from the photos) and adjust wording.
 - Replace the "Studio / maker photo" placeholder in the Story section (`index.html`).
 
-## Publishing it online (free options)
+## Publishing to your shared hosting
 
-- **Netlify Drop** — drag this whole folder onto <https://app.netlify.com/drop>. Done.
-- **GitHub Pages** — push to a repo, enable Pages on the `main` branch.
-- **Cloudflare Pages / Vercel** — connect the repo, no build command needed.
+The site is fully static, so it runs on any shared host (cPanel, Plesk, etc.) —
+no PHP, database, or Node needed.
 
-All work as-is because the site is fully static.
+**1. Build the upload bundle** (WSL):
+```bash
+bash package.sh
+```
+This creates `signature-craft-site.zip` (and the same files unzipped in `dist/`)
+containing only what the live site needs — no originals, PDFs, or dev files — and
+warns you if any photo listed in `products.json` is missing.
+
+**2. Upload it** — cPanel File Manager:
+1. Open **File Manager** → `public_html` (or the folder for your domain/subdomain).
+2. **Upload** `signature-craft-site.zip`.
+3. Right-click it → **Extract**, into that same folder. Then delete the zip.
+4. Check that `index.html` sits directly inside `public_html`
+   (not in `public_html/dist/`).
+
+Or with an FTP client (e.g. FileZilla): upload the **contents** of `dist/` into
+`public_html`.
+
+**3. Visit your domain.** If you still see an old page, do a hard refresh
+(`Ctrl+F5`).
+
+**Updating later:** for product/contact changes, just re-upload
+`data/products.json` (and any new photos into `assets/products/`). For anything
+else, re-run `package.sh` and re-upload the zip.
+
+> If the gallery says it couldn't load the product list on the live site, check
+> that `data/products.json` was uploaded and that the host serves `.json` files
+> (nearly all do).
 
 ---
 

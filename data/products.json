@@ -9,122 +9,288 @@
     "tiktok": "signature.craft",
     "telegram": "Signaturecraft"
   },
+  "links": {
+    "order": "#contact",
+    "commission": "#contact",
+    "product": "#contact"
+  },
   "categories": [
     "All",
     "Earrings",
-    "Necklaces",
-    "Bracelets",
-    "Décor",
-    "Keepsakes"
+    "Keychains",
+    "Frames",
+    "Home Décor",
+    "Seasonal",
+    "Gifts"
   ],
   "products": [
     {
-      "name": "Aurora Drop Earrings",
+      "name": "Rose Cutwork Earrings",
       "category": "Earrings",
-      "material": "Walnut board · brass hooks",
-      "desc": "Featherlight teardrop earrings with a hand-sanded curve and a warm satin finish. Everyday elegance that moves with you.",
-      "price": "Br 750",
-      "tone": "chestnut",
-      "images": []
-    },
-    {
-      "name": "Halo Hoops",
-      "category": "Earrings",
-      "material": "Maple veneer · gold-tone posts",
-      "desc": "Slim open hoops cut from a single sweep of pale maple — modern, minimal, and impossibly light to wear.",
-      "price": "Br 680",
+      "material": "Wood board · silver-tone hooks",
+      "desc": "Open rose blooms with layered petals cut from a single piece of wood. Light, airy, and full of detail.",
+      "price": "",
       "tone": "sand",
-      "images": []
+      "images": [
+        "assets/products/earrings-rose.jpg"
+      ]
     },
     {
-      "name": "Petal Studs",
+      "name": "Lace Medallion Earrings",
       "category": "Earrings",
-      "material": "Cherry wood",
-      "desc": "Tiny sculpted petals with a natural grain, sealed to a soft sheen. The quiet detail that finishes any look.",
-      "price": "Br 520",
-      "tone": "deep",
-      "images": []
-    },
-    {
-      "name": "Meridian Pendant",
-      "category": "Necklaces",
-      "material": "Chestnut board · waxed cord",
-      "desc": "A hand-engraved geometric pendant on an adjustable cord. Understated by day, a talking point by night.",
-      "price": "Br 980",
+      "material": "Wood board · silver-tone hooks",
+      "desc": "A delicate lace-like medallion with fine scrollwork — a statement drop that still feels featherlight.",
+      "price": "",
       "tone": "chestnut",
-      "images": []
+      "images": [
+        "assets/products/earrings-lace.jpg"
+      ]
     },
     {
-      "name": "Willow Layered Necklace",
-      "category": "Necklaces",
-      "material": "Oak beads · brass links",
-      "desc": "Layered wooden beads in graduating tones, strung by hand for a relaxed, artisanal drape.",
-      "price": "Br 1,150",
+      "name": "Blossom Outline Earrings",
+      "category": "Earrings",
+      "material": "Wood board · silver-tone hooks",
+      "desc": "Five-petal flower outlines with a natural grain finish. Simple, sweet, and easy to wear every day.",
+      "price": "",
       "tone": "sand",
-      "images": []
+      "images": [
+        "assets/products/earrings-blossom.jpg"
+      ]
     },
     {
-      "name": "Infinity Bangle",
-      "category": "Bracelets",
-      "material": "Bentwood walnut",
-      "desc": "A seamless steam-bent bangle inspired by our signature mark — one continuous, flowing line of grain.",
-      "price": "Br 890",
+      "name": "Wave Hoop Earrings",
+      "category": "Earrings",
+      "material": "Wood board · silver-tone hooks",
+      "desc": "Soft scalloped hoops with a gentle wave — a playful, organic take on the classic hoop.",
+      "price": "",
       "tone": "deep",
-      "images": []
+      "images": [
+        "assets/products/earrings-wave-hoop.jpg"
+      ]
     },
     {
-      "name": "Signature Cuff",
-      "category": "Bracelets",
-      "material": "Birch · leather backing",
-      "desc": "A wide statement cuff pairing sand-toned birch with a soft leather lining for all-day comfort.",
-      "price": "Br 1,050",
+      "name": "Star Flower Earrings",
+      "category": "Earrings",
+      "material": "Wood board · silver-tone hooks",
+      "desc": "Solid flower drops with a star cut-out at the centre, showing off the warm tone of the wood.",
+      "price": "",
+      "tone": "chestnut",
+      "images": [
+        "assets/products/earrings-star-flower.jpg"
+      ]
+    },
+    {
+      "name": "Cloud Curve Earrings",
+      "category": "Earrings",
+      "material": "Wood board · silver-tone hooks",
+      "desc": "Bold, free-form curved outlines with a modern, sculptural feel. Big look, barely-there weight.",
+      "price": "",
       "tone": "ink",
-      "images": []
+      "images": [
+        "assets/products/earrings-cloud.jpg"
+      ]
     },
     {
-      "name": "Bloom Wall Art",
-      "category": "Décor",
-      "material": "Layered plywood",
-      "desc": "A dimensional floral panel built from stacked, hand-cut layers — a warm centrepiece for any wall.",
-      "price": "From Br 2,400",
-      "tone": "chestnut",
-      "images": []
-    },
-    {
-      "name": "Geometry Coaster Set",
-      "category": "Décor",
-      "material": "Sealed hardwood · set of 4",
-      "desc": "Four faceted coasters with a water-resistant finish. Practical craft that dresses up the table.",
-      "price": "Br 900",
+      "name": "Geometric Keychain",
+      "category": "Keychains",
+      "material": "Wood board · metal ring",
+      "desc": "A round keychain with an intricate geometric lattice — a small everyday piece with a crafted touch.",
+      "price": "",
       "tone": "sand",
-      "images": []
+      "images": [
+        "assets/products/keychain-geometric.jpg"
+      ]
     },
     {
-      "name": "Monogram Keepsake Box",
-      "category": "Keepsakes",
-      "material": "Walnut · felt-lined",
-      "desc": "A personalised trinket box engraved with initials or a short message. Made to hold what matters.",
-      "price": "From Br 1,600",
-      "tone": "deep",
-      "images": []
-    },
-    {
-      "name": "Name Story Pendant",
-      "category": "Keepsakes",
-      "material": "Custom engraved board",
-      "desc": "Your name, word, or date, hand-lettered and cut into wood — a wearable piece of your own story.",
-      "price": "From Br 850",
-      "tone": "ink",
-      "images": []
-    },
-    {
-      "name": "Everlast Ornament",
-      "category": "Keepsakes",
-      "material": "Birch · ribbon",
-      "desc": "A delicate engraved keepsake ornament, perfect for weddings, births, and milestone gifts.",
-      "price": "Br 600",
+      "name": "Landmark Keychain",
+      "category": "Keychains",
+      "material": "Engraved wood board · gold-tone ring",
+      "desc": "An engraved landmark silhouette on a gold-tone ring. A meaningful keepsake or souvenir gift.",
+      "price": "",
       "tone": "chestnut",
-      "images": []
+      "images": [
+        "assets/products/keychain-landmark.jpg"
+      ]
+    },
+    {
+      "name": "Antelope Keychain",
+      "category": "Keychains",
+      "material": "Engraved wood board · metal ring",
+      "desc": "A graceful antelope with hand-engraved detail, cut in light wood. Wildlife-inspired and full of character.",
+      "price": "",
+      "tone": "deep",
+      "images": [
+        "assets/products/keychain-antelope.jpg"
+      ]
+    },
+    {
+      "name": "Love You Dad Frame",
+      "category": "Frames",
+      "material": "Layered wood board",
+      "desc": "A \"Best Dad Ever\" photo frame with raised trophy and rosette details. A heartfelt gift for Father's Day or any day.",
+      "price": "",
+      "tone": "chestnut",
+      "images": [
+        "assets/products/frame-love-you-dad.jpg"
+      ]
+    },
+    {
+      "name": "Best Dad Mini Frame",
+      "category": "Frames",
+      "material": "Layered wood board · stand",
+      "desc": "A compact free-standing \"Best Dad Ever\" frame with star accents — sized for a desk or shelf.",
+      "price": "",
+      "tone": "sand",
+      "images": [
+        "assets/products/frame-best-dad.jpg"
+      ]
+    },
+    {
+      "name": "Mama Mother's Day Frame",
+      "category": "Frames",
+      "material": "Layered wood board",
+      "desc": "A scalloped \"I Love You Mama\" frame with layered hearts and a Happy Mother's Day message.",
+      "price": "",
+      "tone": "chestnut",
+      "images": [
+        "assets/products/frame-mama.jpg"
+      ]
+    },
+    {
+      "name": "Dual Heart Photo Frame",
+      "category": "Frames",
+      "material": "Engraved wood board",
+      "desc": "A book-style frame that opens to hold two photos, framed with hearts. The cover can be engraved with your own message.",
+      "price": "",
+      "tone": "deep",
+      "images": [
+        "assets/products/frame-dual-1.jpg",
+        "assets/products/frame-dual-2.jpg"
+      ]
+    },
+    {
+      "name": "Personalised Kids Name Frame",
+      "category": "Frames",
+      "material": "Layered wood board · custom name",
+      "desc": "A playful photo frame topped with your child's name, decorated with a teddy bear, hearts, and milestone details.",
+      "price": "",
+      "tone": "sand",
+      "images": [
+        "assets/products/frame-kids-name.jpg"
+      ]
+    },
+    {
+      "name": "Mirror with Drawer",
+      "category": "Home Décor",
+      "material": "Wood board · mirror · drawer",
+      "desc": "A tabletop vanity mirror with a patterned frame and a small storage drawer underneath for jewelry and essentials.",
+      "price": "",
+      "tone": "chestnut",
+      "images": [
+        "assets/products/mirror-with-drawer.jpg"
+      ]
+    },
+    {
+      "name": "Flower Wall Mirror",
+      "category": "Home Décor",
+      "material": "Layered wood board · mirror",
+      "desc": "A round wall mirror framed by a ring of layered flowers. A bright, cheerful accent for any room.",
+      "price": "",
+      "tone": "sand",
+      "images": [
+        "assets/products/mirror-flower.jpg"
+      ]
+    },
+    {
+      "name": "Table Number Napkin Holder",
+      "category": "Home Décor",
+      "material": "Wood board · custom engraving",
+      "desc": "Napkin holders engraved with a table number — ideal for weddings, events, and cafés. Available in more than one design.",
+      "price": "",
+      "tone": "deep",
+      "images": [
+        "assets/products/napkin-holder-1.jpg",
+        "assets/products/napkin-holder-2.jpg"
+      ]
+    },
+    {
+      "name": "Our Father Prayer Sign",
+      "category": "Home Décor",
+      "material": "Wood board · stand",
+      "desc": "The Lord's Prayer cut in bold lettering around a central cross, on a free-standing base. A meaningful piece for the home.",
+      "price": "",
+      "tone": "chestnut",
+      "images": [
+        "assets/products/sign-our-father.jpg"
+      ]
+    },
+    {
+      "name": "Nativity Scene",
+      "category": "Seasonal",
+      "material": "Layered wood board",
+      "desc": "A detailed Christmas nativity with the stable, star, palms, and figures, all cut from wood. Available in two sizes.",
+      "price": "",
+      "tone": "sand",
+      "images": [
+        "assets/products/nativity-scene-1.jpg",
+        "assets/products/nativity-scene-2.jpg"
+      ]
+    },
+    {
+      "name": "Ramadan Kareem Lantern",
+      "category": "Seasonal",
+      "material": "Layered wood board · LED lights",
+      "desc": "A hanging lantern-shaped decoration with lattice cut-outs, a mosque silhouette, and warm LED lights.",
+      "price": "",
+      "tone": "chestnut",
+      "images": [
+        "assets/products/ramadan-lantern-1.jpg",
+        "assets/products/ramadan-lantern-2.jpg"
+      ]
+    },
+    {
+      "name": "Ramadan Countdown Calendar",
+      "category": "Seasonal",
+      "material": "Layered wood board",
+      "desc": "A Ramadan day counter with swappable number tiles, lattice detail, and a \"wishing you a joyful and successful Ramadan\" message.",
+      "price": "",
+      "tone": "deep",
+      "images": [
+        "assets/products/ramadan-calendar.jpg"
+      ]
+    },
+    {
+      "name": "Best Husband Ever Plaque",
+      "category": "Gifts",
+      "material": "Layered wood board · stand",
+      "desc": "A heart-shaped \"Best Husband Ever\" plaque with gold-tone lettering. A sweet anniversary or birthday gift.",
+      "price": "",
+      "tone": "chestnut",
+      "images": [
+        "assets/products/plaque-best-husband.jpg"
+      ]
+    },
+    {
+      "name": "Baby Milestone Tag",
+      "category": "Gifts",
+      "material": "Engraved wood board",
+      "desc": "An engraved month-by-month milestone disc for baby photos — a keepsake to treasure after the photos are taken.",
+      "price": "",
+      "tone": "sand",
+      "images": [
+        "assets/products/milestone-tag.jpg"
+      ]
+    },
+    {
+      "name": "Connect Four Game",
+      "category": "Gifts",
+      "material": "Wood board · black & white pieces",
+      "desc": "A classic four-in-a-row game in wood, with black and white playing pieces. Fun for all ages.",
+      "price": "",
+      "tone": "ink",
+      "images": [
+        "assets/products/game-connect-four.jpg"
+      ]
     }
   ]
 }

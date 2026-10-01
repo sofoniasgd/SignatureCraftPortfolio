@@ -4,6 +4,15 @@
             Chestnut #8B5E3C · Dark Gray #2D2D2D
    ============================================================ */
 
+/* Brillant by suhadidesign — logo wordmark font (kept out of git) */
+@font-face {
+  font-family: "Brillant";
+  src: url("../assets/brillant/brillant.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ghost: #f8f8ff;
   --cream: #f1eae3;      /* warm page background from brand profile */
@@ -19,6 +28,8 @@
 
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
+  /* the "Signature" wordmark only (nav, hero, footer) */
+  --logo: "Brillant", "Cormorant Garamond", Georgia, serif;
 
   --container: 1180px;
   --gutter: clamp(1.25rem, 4vw, 3rem);
@@ -157,11 +168,12 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); }
 .brand__mark { width: 40px; height: 40px; flex: none; }
 .brand__text { display: flex; flex-direction: column; line-height: 1; }
 .brand__name {
-  font-family: var(--serif);
-  font-weight: 500;
+  font-family: var(--logo);
+  font-weight: 400;
   font-size: 1.5rem;
   letter-spacing: 0.02em;
   color: var(--ink);
+  padding-bottom: 0.42em; /* Brillant's "g" drops ~0.7em below the baseline */
 }
 .brand__sub {
   font-family: var(--sans);
@@ -170,7 +182,7 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); }
   letter-spacing: 0.5em;
   text-transform: uppercase;
   color: var(--chestnut);
-  margin-top: 2px;
+  margin-top: 0;
   margin-left: 2px;
 }
 
@@ -199,8 +211,18 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); }
 .nav__link.is-active { color: var(--chestnut); }
 .nav__link:hover::after,
 .nav__link.is-active::after { transform: scaleX(1); }
-.nav__cta { color: var(--ghost); }
-.nav__cta:hover { color: var(--ghost); }
+.nav__cta {
+  color: var(--ghost);
+  background: var(--chestnut);
+  border-color: var(--chestnut);
+}
+.nav__cta:hover {
+  color: var(--ghost);
+  background: var(--chestnut-deep);
+  border-color: var(--chestnut-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px -10px rgba(111, 74, 46, 0.6);
+}
 
 /* hamburger */
 .nav__toggle {
@@ -247,11 +269,14 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); }
 .hero__title { margin-bottom: 0.5rem; }
 .hero__title-script {
   display: block;
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(3.5rem, 2rem + 9vw, 8rem);
-  line-height: 0.95;
+  font-family: var(--logo);
+  font-weight: 400;
+  /* Brillant is ~6.6em wide for "Signature": 12.5vw keeps it inside the
+     screen on phones, 7rem fits the 760px hero column on desktop */
+  font-size: clamp(2.4rem, 12.5vw, 7rem);
+  line-height: 1;
   color: var(--ink);
+  padding-bottom: 0.45em; /* room for the deep "g" loop above CRAFT */
 }
 .hero__title-sub {
   display: block;
@@ -262,7 +287,7 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); }
   text-transform: uppercase;
   color: var(--chestnut);
   margin-left: 0.4em;
-  margin-top: 0.4rem;
+  margin-top: 0;
 }
 .hero__tagline {
   font-family: var(--serif);
@@ -283,7 +308,8 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); }
 }
 .hero__scroll-line {
   display: block;
-  width: 1px; height: 60px;
+  width: 3px; height: 70px;
+  border-radius: 3px;
   background: linear-gradient(var(--chestnut), transparent);
   position: relative;
   overflow: hidden;

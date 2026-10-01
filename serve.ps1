@@ -20,7 +20,7 @@ $mime = @{
   ".js"="application/javascript; charset=utf-8"; ".svg"="image/svg+xml";
   ".json"="application/json"; ".png"="image/png"; ".jpg"="image/jpeg";
   ".jpeg"="image/jpeg"; ".gif"="image/gif"; ".webp"="image/webp";
-  ".ico"="image/x-icon"; ".woff2"="font/woff2"
+  ".ico"="image/x-icon"; ".woff2"="font/woff2"; ".otf"="font/otf"
 }
 while ($listener.IsListening) {
   try {

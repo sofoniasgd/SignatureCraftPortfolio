@@ -1,3 +1,9 @@
 assets/*
 !assets/products/*.md
 !assets/products/*.txt
+# deploy bundle (built by package.sh)
+dist/
+signature-craft-site.zip
+
+# Brillant font: personal-use licence, keep out of the public repo
+assets/brillant/

@@ -200,13 +200,29 @@
     }
   }
 
-  // load the data file (contact details + product catalogue) and build the page
+  /* ---------- order links (the "links" block in products.json) ----------
+     Buttons tagged data-link="<key>" in index.html point wherever the data
+     file says — e.g. swap "#contact" for a shop URL later. These defaults
+     match index.html, so the buttons still work if the file fails to load.
+     A product can override the popup button with its own "link". */
+  const LINKS = { order: "#contact", commission: "#contact", product: "#contact" };
+
+  function applyLinks(links) {
+    Object.assign(LINKS, links);
+    $$("[data-link]").forEach((a) => {
+      const href = LINKS[a.dataset.link];
+      if (href) a.href = href;
+    });
+  }
+
+  // load the data file (contact details, links, product catalogue) and build the page
   async function loadProducts() {
     try {
       const res = await fetch("data/products.json", { cache: "no-cache" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       const data = await res.json();
       if (data.contact) renderContact(data.contact);
+      if (data.links) applyLinks(data.links);
       PRODUCTS = data.products || [];
       buildFilters(data.categories && data.categories.length ? data.categories : ["All"]);
       renderCards(PRODUCTS);
@@ -281,6 +297,7 @@
     $("#lbMaterial").textContent = p.material || "";
     $("#lbDesc").textContent = p.desc || "";
     $("#lbPrice").textContent = p.price || "";
+    $("#lbCta").href = p.link || LINKS.product;
     lastFocus = document.activeElement;
     lb.classList.add("is-open");
     lb.setAttribute("aria-hidden", "false");
