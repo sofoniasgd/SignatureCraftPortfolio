@@ -459,6 +459,20 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); }
   transition: all 0.5s var(--ease);
 }
 .card:hover .card__view { opacity: 1; transform: translate(-50%, 0); }
+.card__variants {
+  position: absolute;
+  top: 0.7rem; right: 0.7rem;
+  z-index: 2;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(45, 45, 45, 0.55);
+  backdrop-filter: blur(2px);
+  border-radius: 50px;
+  padding: 0.3rem 0.65rem;
+}
 
 .card__body {
   padding: 1.1rem 1.3rem 1.4rem;
@@ -650,12 +664,61 @@ p { margin: 0 0 1.1em; color: var(--ink-soft); }
   width: 40px; height: 40px;
 }
 .lightbox__media {
+  position: relative;
   aspect-ratio: 1 / 1;
   display: grid; place-items: center;
   overflow: hidden;
 }
 .lightbox__media img.ph-mark { width: 42%; opacity: 0.5; filter: brightness(0) invert(1); }
-.lightbox__media img.real { width: 100%; height: 100%; object-fit: cover; }
+.lightbox__media img.real { width: 100%; height: 100%; object-fit: cover; cursor: pointer; }
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  z-index: 2;
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  font-size: 1.6rem; line-height: 1;
+  color: #fff;
+  background: rgba(45, 45, 45, 0.4);
+  border: none;
+  border-radius: 50%;
+  transition: background 0.3s var(--ease);
+}
+.lightbox__nav:hover { background: rgba(45, 45, 45, 0.7); }
+.lightbox__nav--prev { left: 0.7rem; }
+.lightbox__nav--next { right: 0.7rem; }
+
+.lightbox__count {
+  position: absolute;
+  top: 0.8rem; right: 0.9rem;
+  z-index: 2;
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: rgba(45, 45, 45, 0.5);
+  border-radius: 50px;
+  padding: 0.25rem 0.6rem;
+}
+
+.lightbox__dots {
+  position: absolute;
+  bottom: 0.9rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 0.45rem;
+}
+.lightbox__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  padding: 0;
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.lightbox__dot.is-active { background: #fff; transform: scale(1.2); }
 .lightbox__body { padding: clamp(1.6rem, 4vw, 2.8rem); display: flex; flex-direction: column; }
 .lightbox__cat { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--chestnut); margin: 0 0 0.6rem; }
 .lightbox__title { font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem); margin-bottom: 0.8rem; }

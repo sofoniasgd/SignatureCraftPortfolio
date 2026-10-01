@@ -67,11 +67,17 @@
   sections.forEach((s) => spy.observe(s));
 
   /* ============================================================
-     GALLERY  (built from PRODUCTS in products.js)
+     GALLERY  (built from data/products.json — edit that file to
+     add/change pieces; nothing here needs to change)
      ============================================================ */
   const grid = $("#grid");
   const filtersEl = $("#filters");
   const MARK = "assets/logo-mark.svg";
+
+  let PRODUCTS = [];
+
+  // a product's photos, real paths only (empty slots fall back to the placeholder)
+  const photosOf = (p) => (p.images || []).filter(Boolean);
 
   // placeholder tile markup for a product with no photo
   const placeholder = (p) =>
@@ -79,10 +85,15 @@
        <img src="${MARK}" alt="" />
      </div>`;
 
-  const mediaMarkup = (p) =>
-    p.image
-      ? `<img src="${p.image}" alt="${p.name}" loading="lazy" />`
+  const mediaMarkup = (p) => {
+    const photos = photosOf(p);
+    const cover = photos.length
+      ? `<img src="${photos[0]}" alt="${p.name}" loading="lazy" />`
       : placeholder(p);
+    const variantHint =
+      photos.length > 1 ? `<span class="card__variants">${photos.length} photos</span>` : "";
+    return cover + variantHint;
+  };
 
   function renderCards(list) {
     grid.innerHTML = list
@@ -120,21 +131,97 @@
   }
 
   // filter buttons
-  CATEGORIES.forEach((cat, i) => {
-    const b = document.createElement("button");
-    b.className = "filter" + (i === 0 ? " is-active" : "");
-    b.textContent = cat;
-    b.dataset.cat = cat;
-    b.setAttribute("role", "tab");
-    b.addEventListener("click", () => {
-      $$(".filter", filtersEl).forEach((f) => f.classList.remove("is-active"));
-      b.classList.add("is-active");
-      renderCards(cat === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.category === cat));
+  function buildFilters(categories) {
+    filtersEl.innerHTML = "";
+    categories.forEach((cat, i) => {
+      const b = document.createElement("button");
+      b.className = "filter" + (i === 0 ? " is-active" : "");
+      b.textContent = cat;
+      b.dataset.cat = cat;
+      b.setAttribute("role", "tab");
+      b.addEventListener("click", () => {
+        $$(".filter", filtersEl).forEach((f) => f.classList.remove("is-active"));
+        b.classList.add("is-active");
+        renderCards(cat === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.category === cat));
+      });
+      filtersEl.appendChild(b);
     });
-    filtersEl.appendChild(b);
-  });
+  }
 
-  renderCards(PRODUCTS);
+  /* ---------- contact details (the "contact" block in products.json) ----------
+     Rebuilds the contact-section list and footer social links. If the data
+     file fails to load, the static markup in index.html stays as a fallback. */
+  let orderEmail = "";
+
+  const link = (href, text, external) => {
+    const a = document.createElement("a");
+    a.href = href;
+    a.textContent = text;
+    if (external) {
+      a.target = "_blank";
+      a.rel = "noopener";
+    }
+    return a;
+  };
+
+  function renderContact(c) {
+    orderEmail = c.email || "";
+
+    const socials = [
+      c.instagram && { label: "Instagram", href: `https://instagram.com/${c.instagram}`, handle: c.instagram },
+      c.tiktok && { label: "TikTok", href: `https://tiktok.com/@${c.tiktok}`, handle: c.tiktok },
+      c.telegram && { label: "Telegram", href: `https://t.me/${c.telegram}`, handle: c.telegram },
+    ].filter(Boolean);
+
+    const list = $("#contactList");
+    if (list) {
+      list.innerHTML = "";
+      const addItem = (label, links) => {
+        if (!links.length) return;
+        const li = document.createElement("li");
+        const span = document.createElement("span");
+        span.className = "contact__label";
+        span.textContent = label;
+        li.append(span, ...links);
+        list.appendChild(li);
+      };
+      addItem("Email", orderEmail ? [link(`mailto:${orderEmail}`, orderEmail)] : []);
+      addItem(
+        "Phone / WhatsApp",
+        (c.phones || []).map((ph) => link(`tel:${ph.replace(/[^\d+]/g, "")}`, ph))
+      );
+      socials.forEach((s) => addItem(s.label, [link(s.href, "@" + s.handle, true)]));
+    }
+
+    const footer = $("#footerSocial");
+    if (footer) {
+      footer.innerHTML = "";
+      socials.forEach((s) => footer.appendChild(link(s.href, s.label, true)));
+    }
+  }
+
+  // load the data file (contact details + product catalogue) and build the page
+  async function loadProducts() {
+    try {
+      const res = await fetch("data/products.json", { cache: "no-cache" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const data = await res.json();
+      if (data.contact) renderContact(data.contact);
+      PRODUCTS = data.products || [];
+      buildFilters(data.categories && data.categories.length ? data.categories : ["All"]);
+      renderCards(PRODUCTS);
+    } catch (err) {
+      console.error("Failed to load data/products.json", err);
+      grid.innerHTML = "";
+      filtersEl.innerHTML = "";
+      const msg = document.createElement("p");
+      msg.className = "gallery__note";
+      msg.textContent =
+        "Couldn't load the product list right now. Please refresh the page, or get in touch if this keeps happening.";
+      grid.parentElement.insertBefore(msg, grid);
+    }
+  }
+  loadProducts();
 
   /* ============================================================
      LIGHTBOX
@@ -142,13 +229,53 @@
   const lb = $("#lightbox");
   const lbMedia = $("#lbMedia");
   let lastFocus = null;
+  let lbProduct = null;
+  let lbIndex = 0;
+
+  // renders the current photo (or placeholder), plus cycling controls when
+  // the product has more than one photo — click the image, use the arrows,
+  // tap a dot, or press the left/right arrow keys to move between them
+  function renderLightboxMedia() {
+    const photos = photosOf(lbProduct);
+    if (!photos.length) {
+      lbMedia.innerHTML = `<div class="card__ph" data-tone="${lbProduct.tone || "chestnut"}" style="position:absolute;inset:0;"></div>
+         <img class="ph-mark" src="${MARK}" alt="" style="position:relative;z-index:1;" />`;
+      lbMedia.setAttribute("data-tone", lbProduct.tone || "chestnut");
+      return;
+    }
+    lbMedia.setAttribute("data-tone", "");
+    const multi = photos.length > 1;
+    lbMedia.innerHTML = `
+      <img class="real" src="${photos[lbIndex]}" alt="${lbProduct.name}" />
+      ${
+        multi
+          ? `
+        <button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Previous photo">&#8249;</button>
+        <button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Next photo">&#8250;</button>
+        <span class="lightbox__count">${lbIndex + 1} / ${photos.length}</span>
+        <div class="lightbox__dots">
+          ${photos
+            .map(
+              (_, i) =>
+                `<button type="button" class="lightbox__dot${i === lbIndex ? " is-active" : ""}" data-i="${i}" aria-label="Photo ${i + 1} of ${photos.length}"></button>`
+            )
+            .join("")}
+        </div>`
+          : ""
+      }`;
+  }
+
+  function stepLightbox(dir) {
+    const photos = photosOf(lbProduct);
+    if (photos.length < 2) return;
+    lbIndex = (lbIndex + dir + photos.length) % photos.length;
+    renderLightboxMedia();
+  }
 
   function openLightbox(p) {
-    lbMedia.innerHTML = p.image
-      ? `<img class="real" src="${p.image}" alt="${p.name}" />`
-      : `<div class="card__ph" data-tone="${p.tone || "chestnut"}" style="position:absolute;inset:0;"></div>
-         <img class="ph-mark" src="${MARK}" alt="" style="position:relative;z-index:1;" />`;
-    lbMedia.setAttribute("data-tone", p.image ? "" : p.tone || "chestnut");
+    lbProduct = p;
+    lbIndex = 0;
+    renderLightboxMedia();
     $("#lbCat").textContent = p.category;
     $("#lbTitle").textContent = p.name;
     $("#lbMaterial").textContent = p.material || "";
@@ -173,18 +300,25 @@
     openLightbox(PRODUCTS[Number(card.dataset.index)]);
   });
   lb.addEventListener("click", (e) => {
-    if (e.target.hasAttribute("data-close")) closeLightbox();
+    if (e.target.hasAttribute("data-close")) return closeLightbox();
+    if (e.target.closest(".lightbox__nav--prev")) return stepLightbox(-1);
+    if (e.target.closest(".lightbox__nav--next")) return stepLightbox(1);
+    const dot = e.target.closest(".lightbox__dot");
+    if (dot) return stepLightbox(Number(dot.dataset.i) - lbIndex);
+    if (e.target.matches(".lightbox__media img.real")) stepLightbox(1);
   });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && lb.classList.contains("is-open")) closeLightbox();
+    if (!lb.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") stepLightbox(1);
+    if (e.key === "ArrowLeft") stepLightbox(-1);
   });
 
   /* ============================================================
      CONTACT FORM  (mailto compose — no backend required)
-     Swap ORDER_EMAIL for the business inbox, or wire to
-     Formspree / Netlify Forms for real submissions (see README).
+     The destination inbox is "contact.email" in data/products.json.
+     Wire to Formspree / Netlify Forms for real submissions (see README).
      ============================================================ */
-  const ORDER_EMAIL = "hello@signaturecraft.com"; // TODO: change to the real inbox
   const form = $("#contactForm");
   const note = $("#formNote");
 
@@ -208,11 +342,17 @@
       return;
     }
 
+    if (!orderEmail) {
+      note.textContent = "Email isn't available right now — please call, or message us on Instagram or Telegram.";
+      note.classList.add("is-err");
+      return;
+    }
+
     const subject = encodeURIComponent(`Signature Craft enquiry — ${interest}`);
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nInterested in: ${interest}\n\n${message}`
     );
-    window.location.href = `mailto:${ORDER_EMAIL}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${orderEmail}?subject=${subject}&body=${body}`;
 
     note.textContent = "Opening your email app… if nothing happens, message us on Instagram or WhatsApp.";
     note.classList.add("is-ok");
