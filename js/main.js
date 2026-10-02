@@ -233,7 +233,9 @@
       const msg = document.createElement("p");
       msg.className = "gallery__note";
       msg.textContent =
-        "Couldn't load the product list right now. Please refresh the page, or get in touch if this keeps happening.";
+        location.protocol === "file:"
+          ? "The gallery can't load when index.html is opened straight from your computer — browsers block it. Preview with serve.ps1 / serve.sh, or upload the site to your host."
+          : "Couldn't load the product list right now. Please refresh the page, or get in touch if this keeps happening.";
       grid.parentElement.insertBefore(msg, grid);
     }
   }

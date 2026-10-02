@@ -65,7 +65,8 @@ assets/
   products/           ← Drop your product photos here
 serve.sh              Local preview server for WSL (needs python3)
 serve.ps1             Local preview server for plain Windows (no installs needed)
-package.sh            Builds the upload bundle for your web host
+package.ps1           Builds the upload bundle for your web host (Windows)
+package.sh            Same, for WSL
 ```
 
 After editing `data/products.json` (or adding photos), upload just those files to
@@ -235,13 +236,26 @@ from Google Fonts.
 The site is fully static, so it runs on any shared host (cPanel, Plesk, etc.) —
 no PHP, database, or Node needed.
 
-**1. Build the upload bundle** (WSL):
-```bash
-bash package.sh
-```
+**1. Build the upload bundle** — either:
+- **Windows (easiest):** right-click `package.ps1` → **Run with PowerShell**, or in a
+  terminal: `powershell -ExecutionPolicy Bypass -File package.ps1`
+- **WSL:** `wsl -d Ubuntu-20.04 bash package.sh` (from the project folder), or
+  `bash package.sh` from *inside* an Ubuntu terminal.
+
+> Typing plain `bash ...` in PowerShell uses your **default** WSL distro, which on
+> this PC is Docker Desktop's (`docker-desktop`) — it has no bash, so you get
+> `execvpe /bin/bash failed`. Either name the distro (`-d Ubuntu-20.04`) as above,
+> or make Ubuntu the default once with `wsl --set-default Ubuntu-20.04`
+> (Docker Desktop keeps working).
+
 This creates `signature-craft-site.zip` (and the same files unzipped in `dist/`)
 containing only what the live site needs — no originals, PDFs, or dev files — and
 warns you if any photo listed in `products.json` is missing.
+
+> **Don't test the bundle by double-clicking `dist/index.html`** — the gallery
+> will be empty because browsers block pages opened from disk from loading
+> `products.json` (the page shows a note saying so). It works once uploaded.
+> To test locally first, run the preview server (see "View it" above).
 
 **2. Upload it** — cPanel File Manager:
 1. Open **File Manager** → `public_html` (or the folder for your domain/subdomain).
